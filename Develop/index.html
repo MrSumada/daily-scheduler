@@ -18,6 +18,10 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css"
+      rel="stylesheet" 
+    />
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Work Day Scheduler</title>
   </head>
@@ -28,27 +32,198 @@
       <p class="lead">A simple calendar app for scheduling your work day</p>
       <p id="currentDay" class="lead"></p>
     </header>
-    <div class="container">
+    <div class="container justify-content-center">
 
       <!-- TEST ROW -->
 
-      <!-- <div class="row">
+      <div class="row">
         <div class="hour col-2">
-          <p class="hour-time">5:00</p>
+          <p class="hour-time">5:00 AM</p>
         </div>  
         <div class="description col-8">
-          <textarea>Placeholder Text Here</textarea>
+          <textarea class="description-text"></textarea>
         </div>
         <div class="time-block col-2">
           <button class="saveBtn">
             <i class="far fa-calendar-plus"></i>
           </button>
         </div>
-      </div> -->
-      
+      </div>
+      <div class="row">
+        <div class="hour col-2">
+          <p class="hour-time">8:00 AM</p>
+        </div>  
+        <div class="description col-8">
+          <textarea class="description-text"></textarea>
+        </div>
+        <div class="time-block col-2">
+          <button class="saveBtn">
+            <i class="far fa-calendar-plus"></i>
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="hour col-2">
+          <p class="hour-time">9:00 AM</p>
+        </div>  
+        <div class="description col-8">
+          <textarea class="description-text"></textarea>
+        </div>
+        <div class="time-block col-2">
+          <button class="saveBtn">
+            <i class="far fa-calendar-plus"></i>
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="hour col-2">
+          <p class="hour-time">10:00 AM</p>
+        </div>  
+        <div class="description col-8">
+          <textarea class="description-text"></textarea>
+        </div>
+        <div class="time-block col-2">
+          <button class="saveBtn">
+            <i class="far fa-calendar-plus"></i>
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="hour col-2">
+          <p class="hour-time">11:00 AM</p>
+        </div>  
+        <div class="description col-8">
+          <textarea class="description-text"></textarea>
+        </div>
+        <div class="time-block col-2">
+          <button class="saveBtn">
+            <i class="far fa-calendar-plus"></i>
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="hour col-2">
+          <p class="hour-time">12:00 AM</p>
+        </div>  
+        <div class="description col-8">
+          <textarea class="description-text"></textarea>
+        </div>
+        <div class="time-block col-2">
+          <button class="saveBtn">
+            <i class="far fa-calendar-plus"></i>
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="hour col-2">
+          <p class="hour-time">1:00 PM</p>
+        </div>  
+        <div class="description col-8">
+          <textarea class="description-text"></textarea>
+        </div>
+        <div class="time-block col-2">
+          <button class="saveBtn">
+            <i class="far fa-calendar-plus"></i>
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="hour col-2">
+          <p class="hour-time">2:00 PM</p>
+        </div>  
+        <div class="description col-8">
+          <textarea class="description-text"></textarea>
+        </div>
+        <div class="time-block col-2">
+          <button class="saveBtn">
+            <i class="far fa-calendar-plus"></i>
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="hour col-2">
+          <p class="hour-time">3:00 PM</p>
+        </div>  
+        <div class="description col-8">
+          <textarea class="description-text"></textarea>
+        </div>
+        <div class="time-block col-2">
+          <button class="saveBtn">
+            <i class="far fa-calendar-plus"></i>
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="hour col-2">
+          <p class="hour-time">4:00 PM</p>
+        </div>  
+        <div class="description col-8">
+          <textarea class="description-text"></textarea>
+        </div>
+        <div class="time-block col-2">
+          <button class="saveBtn">
+            <i class="far fa-calendar-plus"></i>
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="hour col-2">
+          <p class="hour-time">5:00 PM</p>
+        </div>  
+        <div class="description col-8">
+          <textarea class="description-text"></textarea>
+        </div>
+        <div class="time-block col-2">
+          <button class="saveBtn">
+            <i class="far fa-calendar-plus"></i>
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="hour col-2">
+          <p class="hour-time">6:00 PM</p>
+        </div>  
+        <div class="description col-8">
+          <textarea class="description-text"></textarea>
+        </div>
+        <div class="time-block col-2">
+          <button class="saveBtn">
+            <i class="far fa-calendar-plus"></i>
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="hour col-2">
+          <p class="hour-time">7:00 PM</p>
+        </div>  
+        <div class="description col-8">
+          <textarea class="description-text"></textarea>
+        </div>
+        <div class="time-block col-2">
+          <button class="saveBtn">
+            <i class="far fa-calendar-plus"></i>
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="hour col-2">
+          <p class="hour-time">8:00 PM</p>
+        </div>  
+        <div class="description col-8">
+          <textarea class="description-text"></textarea>
+        </div>
+        <div class="time-block col-2">
+          <button class="saveBtn">
+            <i class="far fa-calendar-plus"></i>
+          </button>
+        </div>
+      </div>
     </div>
 
+    <footer><h3>Enjoy your day!</h3></footer>
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://kit.fontawesome.com/94aeeb3f6d.js" crossorigin="anonymous"></script>
     <script src="./assets/js/script.js"></script>

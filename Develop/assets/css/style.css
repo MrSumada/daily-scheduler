@@ -4,6 +4,14 @@ body {
   line-height: 1;
 }
 
+footer {
+  font-size: 20px;
+  text-align: center;
+
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 textarea{
   background: transparent;
   border: none;
@@ -32,7 +40,8 @@ p {
 }
 
 .container {
-  height: 80px;
+  display: block;
+  padding: 50px;
 }
 
 .description{
@@ -54,11 +63,11 @@ p {
 .row {
   /* turned off */
   /* white-space: pre-wrap; */
-  height: 80px;
-  border-top: 1px solid white;
+  height: 120px;
+  border: 1px 0 solid black;
   /* new */
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
 }
 
 .hour {
@@ -70,7 +79,7 @@ p {
   text-align: center;
   display: flex;
   width: 100%;
-  background-color: lemonchiffon;
+  /* background: linear-gradient(180deg, lemonchiffon, white); */
 }
 
 .hour-time {
@@ -102,9 +111,10 @@ p {
   /* new */
   width: 100%;
   height: 100%;
+  /* border-bottom: none; */
 }
 
-.saveBtn i:hover {
-  font-size: 20px;
-  transition: all .3s ease-in-out;
+.saveBtn:hover {
+  font-size: 40px;
+  transition: all .1s ease-in-out;
 }
