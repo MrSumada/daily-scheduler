@@ -1,6 +1,7 @@
 var hourTime;
 var currentTime = moment();
 var currentDay = moment().format("MMM Do YYYY");
+var testText = "test time"
 
 $("#currentDay").text(currentDay);
 
@@ -12,47 +13,66 @@ console.log(currentTime);
 //         text: ""
 //     }]
 
-// generateBlocks();
+generateBlocks();
 
-// function generateBlocks() {
-//     for (var i = 5; i < 24; i++) {
+function generateBlocks() {
+    for (var i = 8; i < 20; i++) {
 
-//         var newBlockEl = $("<div>").addClass("row d-flex vw-90");
-//         var newHourDiv = $("<div>").addClass("hour col-2 align-middle");
-//         var newHourEl = $("<p>").addClass("hour-time align-middle");
-//         var hourText = moment.utc({hour: i}).format("h:mm A");
-//         $(newHourEl).text(hourText);
+        var newBlockEl = $("<div>").addClass("row d-flex vw-90");
+        var newHourDiv = $("<div>").addClass("hour col-2 align-middle");
+        var newHourEl = $("<p>").addClass("hour-time align-middle");
+        var hourText = moment.utc({hour: i}).format("h:mm A");
+        $(newHourEl).text(hourText);
 
-//         $(newHourDiv).append(newHourEl);
+        $(newHourDiv).append(newHourEl);
 
-//         var newDescriptionDiv = $("<div>").addClass("description col-9");
-//         var newDescriptionEl = $("<textarea>").text("");
-//         $(newDescriptionDiv).append(newDescriptionEl);
+        var newDescriptionDiv = $("<div>").addClass("description col-8");
+        var newDescriptionEl = $("<p>").text("");
+        $(newDescriptionDiv).append(newDescriptionEl);
 
-//         var newButtonDiv = $("<div>").addClass("time-block col-1");
-//         var newButtonEl = $("<button>").addClass("saveBtn");
-//         $(newButtonEl).html('<i class="far fa-calendar-plus"></i>');
-//         $(newButtonDiv).append(newButtonEl);
+        var newButtonDiv = $("<div>").addClass("time-block col-2");
+        var newButtonEl = $("<button>").addClass("saveBtn");
+        $(newButtonEl).html('<i class="far fa-calendar-plus"></i>');
+        $(newButtonDiv).append(newButtonEl);
 
-//         $(newBlockEl).removeClass("past present future")
+        $(newBlockEl).removeClass("past present future")
 
-//         if (moment(hourText).isAfter(currentTime)) {
-//             $(newBlockEl).addClass("future");
-//         }
+        if (moment(hourText).isAfter(currentTime)) {
+            $(newBlockEl).addClass("future");
+        }
 
-//         $(newBlockEl).append(newHourDiv, newDescriptionDiv, newButtonDiv);
+        $(newBlockEl).append(newHourDiv, newDescriptionDiv, newButtonDiv);
 
-//         $(".container").append(newBlockEl);
-//     }
-// }
+        $(newBlockEl).on("click", "button", function(){
+            console.log("This will save it");
+            $(newBlockEl).find(".description").text("Hello");
+        });
 
-function saveTextButton() {
-    $(".row").on("click", "button", function(){
-        console.log("This will save it");
-    });
+        $(".container").append(newBlockEl);
+    }
 }
 
-saveTextButton();
+// $(".description").on("click", "p", function() {
+//     var text = $(this)
+//         .text()
+//         .trim();
+
+//     var textInput = $("<textarea>")
+//         .addClass("form-control")
+//         .val(text);
+
+//     $(this).replaceWith(textInput);
+//     });
+
+
+
+// function saveTextButton() {
+//     $(".row").on("click", "button", function(){
+//         console.log("This will save it");
+//     });
+// }
+
+// saveTextButton();
 
 // function testTime() {
 //     $(newBlockEl).removeClass("past present future")
@@ -62,16 +82,25 @@ saveTextButton();
 //     }
 // };
 
+
+// $(".row").on("click", function(){
+//     testText = $("textarea").val;
+//     console.log(testText);
+// })
+
 $(".row").draggable({
     helper: "clone",
     zIndex: 100,
-    revert: true
+    revert: true,
+    drag: function(event, textarea) {
+        testTime = $(this).val();
+    }
     // axis: y
     // $(this).find("textarea").text("")
 });
 
 $(".row").droppable({
     drop: function(event, textarea) {
-        $(this).find("textarea").text("Dropped!");
+        $(this).find("textarea").text(testText + " Dropped!");
     }
 });
