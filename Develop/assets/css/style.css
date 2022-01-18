@@ -18,17 +18,16 @@ textarea{
   resize: none;
   color: #000000;
   border-left: 1px solid black;
+  margin: 20px 0;
   padding: 10px;
   /* new */
-  border-top: 1px solid black;
-  background-color: lemonchiffon;
   width: 100%;
   height: 100%;
 }
 
 p {
   margin: 0%;
-  padding: 10px;
+  padding: 20px 0 0 0;
 }
 
 .jumbotron {
@@ -44,6 +43,25 @@ p {
   padding: 50px;
 }
 
+.row {
+  /* turned off */
+  /* white-space: pre-wrap; */
+  height: 120px;
+  border: 1px 0 solid black;
+  /* new */
+  /* width: 100%; */
+  /* height: 100%; */
+}
+
+.description-container {
+  background-color: lightgray;
+  /* width: 100%;
+  height: 100%; */
+  padding-left: 0;
+  padding-right: 0;
+  border-radius: 0 20px 20px 0;
+}
+
 .description{
   /* turned off */
   /* white-space: pre-wrap; */
@@ -52,10 +70,13 @@ p {
   resize: none;
   color: #000000;
   border-left: 1px solid black;
-  padding: 10px;
   /* new */
   border-top: 1px solid black;
-  background-color: lightgray;
+  width: 100%;
+  height: 100%;
+}
+
+.description p {
   width: 100%;
   height: 100%;
 }
@@ -68,16 +89,6 @@ p {
   margin: 0%;
 }
 
-.row {
-  /* turned off */
-  /* white-space: pre-wrap; */
-  height: 120px;
-  border: 1px 0 solid black;
-  /* new */
-  width: 100%;
-  /* height: 100%; */
-}
-
 .hour {
   background-color: #ffffff;
   color: #000000;
@@ -86,6 +97,7 @@ p {
   /* white-space: pre-wrap; */
   text-align: center;
   display: flex;
+  justify-content: center;
   width: 100%;
   /* background: linear-gradient(180deg, lemonchiffon, white); */
 }
@@ -125,4 +137,12 @@ p {
 .saveBtn:hover {
   font-size: 40px;
   transition: all .1s ease-in-out;
+}
+
+.draggable {
+  width: none;
+}
+
+.highlight {
+  background-color: lemonchiffon;
 }
