@@ -3,6 +3,7 @@ var currentTime = moment();
 var droppableText = "droppable";
 var wasDragged = false;
 var wasDropped = false;
+var isDragging = false;
 
 // Obj for each row, with corresponding ids
 var timeObj8a = {
@@ -108,21 +109,21 @@ function setTimeBackground() {
 
 // Check if dragging
 
-$(function() {
-    var isDragging = false;
-    $(".description")
-    .mousedown(function() {
-        isDragging = false;
-    })
-    .mousemove(function() {
-        isDragging = true;
-    })
-    .mouseup(function() {
-        stopDragging = isDragging;
-        isDragging = false;
-        console.log(stopDragging);
-    })
-});
+// $(function() {
+    
+//     $(".description")
+//     .mousedown(function() {
+//         isDragging = false;
+//     })
+//     .mousemove(function() {
+//         isDragging = true;
+//     })
+//     .mouseup(function() {
+//         wasDragged = isDragging;
+//         isDragging = false;
+//         console.log(wasDragged);
+//     })
+// });
 
 
 // Click Description the change to writable textarea
@@ -172,6 +173,8 @@ $(function() {
 
 // New Drag and Drop functions
 
+//try making p the draggable?
+
 $(".description-container").draggable({
     zIndex: 1,
     revert: true,
@@ -179,19 +182,36 @@ $(".description-container").draggable({
     start: function() {
         droppableText = $(this).find("p").text().trim();
         // console.log(droppableText);
+        var dragged = true;
+        $("textarea").click(false);
         
     },
     stop: function() {
-        var descriptionP = $("<p>")
-        .addClass("description-text")
-        .text(text);
+        // var descriptionP = $("<p>")
+        // .addClass("description-text")
+        // .text(text);
 
-        $(this).replaceWith(descriptionP);
-        $(this).find("p").text = "";
+        // $(this).html(descriptionP);
+        $("textarea").click(false);
+        $(this).find("p").text("");
 
-    }
-})
+        }
+    })
+    .mousedown(function() {
+        isDragging = false;
 
+
+    })
+    .mousemove(function() {
+        isDragging = true;
+    })
+    .mouseup(function() {
+        wasDragged = isDragging;
+        isDragging = false;
+        console.log(wasDragged);
+        $("textarea").click(false);
+    })
+    
 $(".description-container").droppable({
     drop: function(event, p) {
         var currentText = $(this).find("p").text().trim();
@@ -206,8 +226,8 @@ $(".description-container").droppable({
 
 
 // OLDDDD Version of click functions
-
-$(".description").on("click", "p", function() {
+$(".description-container").on("click", "p", function() {
+    
     var text = $(this)
         .text()
         .trim();
@@ -221,11 +241,13 @@ $(".description").on("click", "p", function() {
     textInput.trigger("focus");
 
     $(".description").on("blur", "textarea", function() {
+        // $(".dec-text").text("");
     });
 });
+// }
 
 // Click off textarea to revert back to paragraph
-$(".description").on("blur", "textarea", function() {
+$(".description-container").on("blur", "textarea", function() {
 
     droppableText = $("#dec-text-2p").text().trim();
     // console.log(droppableText);
@@ -240,7 +262,7 @@ $(".description").on("blur", "textarea", function() {
     //     .replace("row-", "description-");
 
     var descriptionP = $("<p>")
-        .addClass("description-text")
+        .addClass("dec-text")
         .text(text);
 
     $(this).replaceWith(descriptionP);
