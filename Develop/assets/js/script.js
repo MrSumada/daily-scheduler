@@ -1,6 +1,7 @@
 var hourTime;
 var currentTime = moment();
-var currentDay = moment().format("MMM Do YYYY");
+
+var droppableText = "droppable";
 
 // Obj for each row, with corresponding ids
 var timeObj8a = {
@@ -74,25 +75,29 @@ var timeArr = [timeObj8a, timeObj9a, timeObj10a, timeObj11a, timeObj12p, timeObj
 
 
 // Sets Current Day at the top of the page
-$("#currentDay").text(currentDay);
+$("#currentDay").text(moment().format("MMM Do YYYY"));
 
-// Set Past, Present, and Future classes, on Open and every minute
-setTimeBackground(); 
+// Set Past, Present, and Future classes, on Open and every 30 seconds
+setTimeBackground();
 
-setInterval (setTimeBackground(), 60000);
+setInterval (function(){
+    setTimeBackground();
+}, 30000);
 
+
+    //remove old Time Classes, and replace with current ones, loops through array to assign classes
 function setTimeBackground() {
     $(".description-container").removeClass("past present future");
 
     for (var i = 0; i < timeArr.length; i++) {
         var timeMoment = moment(timeArr[i].time, "h:mma");
         var timeAfter = timeMoment.isAfter(currentTime, "hours");
-        var timeDuring = timeMoment.isSame(currentTime, "hours");
-        console.log(timeAfter);
+        var timeSame = timeMoment.isSame(currentTime, "hours");
+        
 
         if (timeAfter === true) {
             $(timeArr[i].divId).closest(".description-container").addClass("future");
-        } else if (timeDuring === true) {
+        } else if (timeSame === true) {
             $(timeArr[i].divId).closest(".description-container").addClass("present");
         } else {
             $(timeArr[i].divId).closest(".description-container").addClass("past");
@@ -101,7 +106,98 @@ function setTimeBackground() {
 }
 
 
+
 // Click Description the change to writable textarea
+
+
+
+    $(".description").find("p").on("click", function() {
+        var text = $(this)
+            .text()
+            .trim();
+
+        var textInput = $("<textarea>")
+            .addClass("form-control")
+            .val(text);
+
+        $(this).replaceWith(textInput);
+
+        textInput.trigger("focus");
+
+        // $(timeArr[i].divId).on("blur", "textarea", function() {
+        // });
+    });
+
+
+// Click off textarea to revert back to paragraph
+$("#dec-div-8a").on("blur", "textarea", function() {
+
+    // droppableText = $("#dec-text-2p").text().trim();
+    // console.log(droppableText);
+
+    var text = $(this)
+        .val()
+        .trim();
+
+    droppableText = text;
+
+    // var status = $(this)
+    //     .closest("#dec-")
+    //     .attr("id")
+    //     .replace("dec-", "dec-text-");
+
+    var descriptionP = $("<p>")
+        .addClass("dec-text")
+        .attr("id", "dec-text-8a")
+        .text(text);
+
+    $(this).replaceWith(descriptionP);
+});
+
+// $("div[id$='9a']").on("click", "p", function() {
+//     var text = $(this)
+//         .text()
+//         .trim();
+
+
+// for loop for selectors like in Code Quiz ......
+
+
+//Drag and Drop functions
+
+// $(".description").on("click", function(){
+
+//     $(this).addClass("highlight");
+
+//     droppableText = $("#dec-text").text().trim();
+//     console.log(droppableText);
+// });
+
+$(".description-container").draggable({
+    zIndex: 1,
+    revert: true,
+    axis: "y",
+    start: function() {
+        droppableText = $(this).find("p").text().trim();
+        console.log(droppableText);
+    }
+})
+
+$(".description-container").droppable({
+    drop: function(event, p) {
+        var currentText = $(this).find("p").text().trim();
+        if (!currentText) {
+            $(this).find("p").text(droppableText);
+        } else {
+            $(this).find("p").text(currentText + " And " + droppableText);
+        }
+    }
+});
+
+
+
+// OLDDDD Version
+
 $(".description").on("click", "p", function() {
     var text = $(this)
         .text()
@@ -121,6 +217,10 @@ $(".description").on("click", "p", function() {
 
 // Click off textarea to revert back to paragraph
 $(".description").on("blur", "textarea", function() {
+
+    droppableText = $("#dec-text-2p").text().trim();
+    console.log(droppableText);
+
     var text = $(this)
         .val()
         .trim();
@@ -141,93 +241,3 @@ $(".description").on("blur", "textarea", function() {
     //     .closest(".row-8a")
     //     .index();
 });
-
-// $("div[id$='9a']").on("click", "p", function() {
-//     var text = $(this)
-//         .text()
-//         .trim();
-
-
-
-// function saveTextButton() {
-//     $(".row").on("click", "button", function(){
-//         console.log("This will save it");
-//     });
-// }
-
-// saveTextButton();
-
-// $(".row").on("click", function(){
-//     testText = $("textarea").val;
-//     console.log(testText);
-// })
-
-$(".description-container").find(".saveBtn").on("click", function(){
-    
-    console.log("working")
-
-    $(this).sibling(".description").addClass("highlight");
-    $(this).closest(".description-container").draggable({
-        // helper: "clone",
-        zIndex: 1,
-        revert: true,
-        drag: function(event, button) {
-            testTime = $(this).val();
-            $(this).closest(".description-container").removeClass("highlight");
-        },
-        // drop: function(event, button) {
-            
-        // }
-        // axis: y
-        // $(this).find("textarea").text("")
-    });
-});
-
-$(".description-container").droppable({
-    drop: function(event, textarea) {
-        $(this).find("textarea").text(testText + " Dropped!");
-    }
-});
-
-
-
-// old Generate rows function, replaced with HTML rows
-
-// generateBlocks();
-
-// function generateBlocks() {
-//     for (var i = 8; i < 20; i++) {
-
-//         var newBlockEl = $("<div>").addClass("row d-flex vw-90");
-//         var newHourDiv = $("<div>").addClass("hour col-2 align-middle");
-//         var newHourEl = $("<p>").addClass("hour-time align-middle");
-//         var hourText = moment.utc({hour: i}).format("h:mm A");
-//         $(newHourEl).text(hourText);
-
-//         $(newHourDiv).append(newHourEl);
-
-//         var newDescriptionDiv = $("<div>").addClass("description col-8");
-//         var newDescriptionEl = $("<p>").text("");
-//         $(newDescriptionDiv).append(newDescriptionEl);
-
-//         var newButtonDiv = $("<div>").addClass("time-block col-2");
-//         var newButtonEl = $("<button>").addClass("saveBtn");
-//         $(newButtonEl).html('<i class="far fa-calendar-plus"></i>');
-//         $(newButtonDiv).append(newButtonEl);
-
-//         $(newBlockEl).removeClass("past present future")
-
-//         if (moment(hourText).isAfter(currentTime)) {
-//             $(newBlockEl).addClass("future");
-//         }
-
-//         $(newBlockEl).append(newHourDiv, newDescriptionDiv, newButtonDiv);
-
-//         $(newBlockEl).on("click", "button", function(){
-//             console.log("This will save it");
-//             $(newBlockEl).find(".description").text("Hello");
-//         });
-
-//         $(".container").append(newBlockEl);
-//     }
-// }
