@@ -1,7 +1,8 @@
 var hourTime;
 var currentTime = moment();
-
 var droppableText = "droppable";
+var wasDragged = false;
+var wasDropped = false;
 
 // Obj for each row, with corresponding ids
 var timeObj8a = {
@@ -85,7 +86,7 @@ setInterval (function(){
 }, 30000);
 
 
-    //remove old Time Classes, and replace with current ones, loops through array to assign classes
+//remove old Time Classes, and replace with current ones, loops through array to assign classes
 function setTimeBackground() {
     $(".description-container").removeClass("past present future");
 
@@ -105,73 +106,71 @@ function setTimeBackground() {
     }
 }
 
+// Check if dragging
+
+$(function() {
+    var isDragging = false;
+    $(".description")
+    .mousedown(function() {
+        isDragging = false;
+    })
+    .mousemove(function() {
+        isDragging = true;
+    })
+    .mouseup(function() {
+        stopDragging = isDragging;
+        isDragging = false;
+        console.log(stopDragging);
+    })
+});
 
 
 // Click Description the change to writable textarea
 
+//     $(".description").find("p").on("click", function() {
+//         var text = $(this)
+//             .text()
+//             .trim();
+
+//         var textInput = $("<textarea>")
+//             .addClass("form-control")
+//             .val(text);
+
+//         $(this).replaceWith(textInput);
+
+//         textInput.trigger("focus");
+
+//         // $(timeArr[i].divId).on("blur", "textarea", function() {
+//         // });
+//     });
 
 
-    $(".description").find("p").on("click", function() {
-        var text = $(this)
-            .text()
-            .trim();
+// // Click off textarea to revert back to paragraph
+// $("#dec-div-8a").on("blur", "textarea", function() {
 
-        var textInput = $("<textarea>")
-            .addClass("form-control")
-            .val(text);
+//     // droppableText = $("#dec-text-2p").text().trim();
+//     // console.log(droppableText);
 
-        $(this).replaceWith(textInput);
-
-        textInput.trigger("focus");
-
-        // $(timeArr[i].divId).on("blur", "textarea", function() {
-        // });
-    });
-
-
-// Click off textarea to revert back to paragraph
-$("#dec-div-8a").on("blur", "textarea", function() {
-
-    // droppableText = $("#dec-text-2p").text().trim();
-    // console.log(droppableText);
-
-    var text = $(this)
-        .val()
-        .trim();
-
-    droppableText = text;
-
-    // var status = $(this)
-    //     .closest("#dec-")
-    //     .attr("id")
-    //     .replace("dec-", "dec-text-");
-
-    var descriptionP = $("<p>")
-        .addClass("dec-text")
-        .attr("id", "dec-text-8a")
-        .text(text);
-
-    $(this).replaceWith(descriptionP);
-});
-
-// $("div[id$='9a']").on("click", "p", function() {
 //     var text = $(this)
-//         .text()
+//         .val()
 //         .trim();
 
+//     droppableText = text;
 
-// for loop for selectors like in Code Quiz ......
+//     // var status = $(this)
+//     //     .closest("#dec-")
+//     //     .attr("id")
+//     //     .replace("dec-", "dec-text-");
 
+//     var descriptionP = $("<p>")
+//         .addClass("dec-text")
+//         .attr("id", "dec-text-8a")
+//         .text(text);
 
-//Drag and Drop functions
-
-// $(".description").on("click", function(){
-
-//     $(this).addClass("highlight");
-
-//     droppableText = $("#dec-text").text().trim();
-//     console.log(droppableText);
+//     $(this).replaceWith(descriptionP);
 // });
+
+// New Drag and Drop functions
 
 $(".description-container").draggable({
     zIndex: 1,
@@ -179,7 +178,17 @@ $(".description-container").draggable({
     axis: "y",
     start: function() {
         droppableText = $(this).find("p").text().trim();
-        console.log(droppableText);
+        // console.log(droppableText);
+        
+    },
+    stop: function() {
+        var descriptionP = $("<p>")
+        .addClass("description-text")
+        .text(text);
+
+        $(this).replaceWith(descriptionP);
+        $(this).find("p").text = "";
+
     }
 })
 
@@ -196,7 +205,7 @@ $(".description-container").droppable({
 
 
 
-// OLDDDD Version
+// OLDDDD Version of click functions
 
 $(".description").on("click", "p", function() {
     var text = $(this)
@@ -204,7 +213,7 @@ $(".description").on("click", "p", function() {
         .trim();
 
     var textInput = $("<textarea>")
-        .addClass("form-control")
+        // .addClass("form-control")
         .val(text);
 
     $(this).replaceWith(textInput);
@@ -219,7 +228,7 @@ $(".description").on("click", "p", function() {
 $(".description").on("blur", "textarea", function() {
 
     droppableText = $("#dec-text-2p").text().trim();
-    console.log(droppableText);
+    // console.log(droppableText);
 
     var text = $(this)
         .val()
