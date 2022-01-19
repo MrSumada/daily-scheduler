@@ -107,73 +107,7 @@ function setTimeBackground() {
     }
 }
 
-// Check if dragging
-
-// $(function() {
-    
-//     $(".description")
-//     .mousedown(function() {
-//         isDragging = false;
-//     })
-//     .mousemove(function() {
-//         isDragging = true;
-//     })
-//     .mouseup(function() {
-//         wasDragged = isDragging;
-//         isDragging = false;
-//         console.log(wasDragged);
-//     })
-// });
-
-
-// Click Description the change to writable textarea
-
-//     $(".description").find("p").on("click", function() {
-//         var text = $(this)
-//             .text()
-//             .trim();
-
-//         var textInput = $("<textarea>")
-//             .addClass("form-control")
-//             .val(text);
-
-//         $(this).replaceWith(textInput);
-
-//         textInput.trigger("focus");
-
-//         // $(timeArr[i].divId).on("blur", "textarea", function() {
-//         // });
-//     });
-
-
-// // Click off textarea to revert back to paragraph
-// $("#dec-div-8a").on("blur", "textarea", function() {
-
-//     // droppableText = $("#dec-text-2p").text().trim();
-//     // console.log(droppableText);
-
-//     var text = $(this)
-//         .val()
-//         .trim();
-
-//     droppableText = text;
-
-//     // var status = $(this)
-//     //     .closest("#dec-")
-//     //     .attr("id")
-//     //     .replace("dec-", "dec-text-");
-
-//     var descriptionP = $("<p>")
-//         .addClass("dec-text")
-//         .attr("id", "dec-text-8a")
-//         .text(text);
-
-//     $(this).replaceWith(descriptionP);
-// });
-
-// New Drag and Drop functions
-
-//try making p the draggable?
+//  Drag and Drop functions
 
 $(".description-container").draggable({
     zIndex: 1,
@@ -181,26 +115,17 @@ $(".description-container").draggable({
     axis: "y",
     start: function() {
         droppableText = $(this).find("p").text().trim();
-        // console.log(droppableText);
         var dragged = true;
-        $("textarea").click(false);
         
     },
     stop: function() {
-        // var descriptionP = $("<p>")
-        // .addClass("description-text")
-        // .text(text);
-
-        // $(this).html(descriptionP);
-        $("textarea").click(false);
-        $(this).find("p").text("");
-
+        if (wasDropped === true) {
+            $(this).find("p").text("");
+            }
         }
     })
     .mousedown(function() {
         isDragging = false;
-
-
     })
     .mousemove(function() {
         isDragging = true;
@@ -208,8 +133,6 @@ $(".description-container").draggable({
     .mouseup(function() {
         wasDragged = isDragging;
         isDragging = false;
-        console.log(wasDragged);
-        $("textarea").click(false);
     })
     
 $(".description-container").droppable({
@@ -220,6 +143,15 @@ $(".description-container").droppable({
         } else {
             $(this).find("p").text(currentText + " And " + droppableText);
         }
+
+        wasDropped = true;
+        console.log("wasDropped is " + wasDropped);
+        if (wasDropped === true) {
+            setTimeout(function(){
+                wasDropped = false;
+                console.log("wasDropped is " + wasDropped);
+            }, 1000)
+        }
     }
 });
 
@@ -227,7 +159,7 @@ $(".description-container").droppable({
 
 // OLDDDD Version of click functions
 $(".description-container").on("click", "p", function() {
-    
+    if (wasDragged === false) {
     var text = $(this)
         .text()
         .trim();
@@ -243,6 +175,7 @@ $(".description-container").on("click", "p", function() {
     $(".description").on("blur", "textarea", function() {
         // $(".dec-text").text("");
     });
+}
 });
 // }
 
