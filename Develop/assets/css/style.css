@@ -146,10 +146,12 @@ p {
   transition: all .1s ease-in-out;
 }
 
-/* .draggable {
-  width: none;
-} */
-
-.highlight {
-  background-color:#77dd77;
+.bottom-div {
+  border-bottom: 1px solid black;
 }
+
+.bottom-hour {
+  border-bottom: 1px dashed black;
+}
+
+

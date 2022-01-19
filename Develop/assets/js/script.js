@@ -1,8 +1,8 @@
 var hourTime;
 var currentTime = moment();
-var droppableText = "droppable";
-var wasDragged = false;
+var droppableText = "";
 var wasDropped = false;
+var wasDragged = false;
 var isDragging = false;
 
 // Obj for each row, with corresponding ids
@@ -118,6 +118,7 @@ $(".description-container").draggable({
         var dragged = true;
         
     },
+        //remove text if Drop was successful
     stop: function() {
         if (wasDropped === true) {
             $(this).find("p").text("");
@@ -134,7 +135,8 @@ $(".description-container").draggable({
         wasDragged = isDragging;
         isDragging = false;
     })
-    
+        // drop function, use "And" if adding multiple decs, update timeArr
+        // update wasDropped for 1 second
 $(".description-container").droppable({
     drop: function(event, p) {
         var currentText = $(this).find("p").text().trim();
@@ -144,8 +146,15 @@ $(".description-container").droppable({
             $(this).find("p").text(currentText + " And " + droppableText);
         }
 
+        for (var i = 0; i < timeArr.length; i++) {
+            var newDescription = $(timeArr[i].divId).find("p").text().trim();
+            console.log(newDescription);
+            $(timeArr[i].description).text(newDescription);
+        }
+        console.log(timeArr);
+
         wasDropped = true;
-        console.log("wasDropped is " + wasDropped);
+        
         if (wasDropped === true) {
             setTimeout(function(){
                 wasDropped = false;
@@ -157,51 +166,45 @@ $(".description-container").droppable({
 
 
 
-// OLDDDD Version of click functions
+// Click functions, only if not Dragged, create textarea
 $(".description-container").on("click", "p", function() {
     if (wasDragged === false) {
-    var text = $(this)
-        .text()
-        .trim();
+        var text = $(this)
+            .text()
+            .trim();
 
-    var textInput = $("<textarea>")
-        // .addClass("form-control")
-        .val(text);
+        var textInput = $("<textarea>")
+            .val(text);
 
-    $(this).replaceWith(textInput);
+        $(this).replaceWith(textInput);
 
-    textInput.trigger("focus");
+        textInput.trigger("focus");
 
-    $(".description").on("blur", "textarea", function() {
-        // $(".dec-text").text("");
-    });
-}
+        // $(".description").on("blur", "textarea", function() {
+        //     // $(".dec-text").text("");
+        // });
+    }
 });
-// }
 
 // Click off textarea to revert back to paragraph
 $(".description-container").on("blur", "textarea", function() {
 
     droppableText = $("#dec-text-2p").text().trim();
-    // console.log(droppableText);
 
     var text = $(this)
         .val()
         .trim();
-
-    // var status = $(this)
-    //     .closest("#row-")
-    //     .attr("id")
-    //     .replace("row-", "description-");
 
     var descriptionP = $("<p>")
         .addClass("dec-text")
         .text(text);
 
     $(this).replaceWith(descriptionP);
-
-    // get the task's position in the list of other li elements
-    // var index = $(this)
-    //     .closest(".row-8a")
-    //     .index();
 });
+
+
+// click Save button to add to localStorage
+$(".saveBtn").on("click", function() {
+    // localStorage.setItem("timeArr", JSON.stringify(highScoreObj));
+    console.log(timeArr);
+})
