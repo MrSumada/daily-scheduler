@@ -131,7 +131,9 @@ function setTimeBackground() {
 $(".description-container").draggable({
     zIndex: 1,
     revert: true,
+    revertDuration: 1,
     axis: "y",
+    opacity: 0.85,
     start: function() {
         droppableText = $(this).find("p").text().trim();
         // var dragged = true;
@@ -144,8 +146,9 @@ $(".description-container").draggable({
             }
         }
     })
+        //determine when mouse click was dragging vs clicking
     .mousedown(function() {
-        isDragging = false;
+        // isDragging = false;
     })
     .mousemove(function() {
         isDragging = true;
@@ -154,37 +157,37 @@ $(".description-container").draggable({
         wasDragged = isDragging;
         isDragging = false;
     })
-        // drop function, use "And" if adding multiple decs, update timeArr
-        // update wasDropped for 1 second
+        // successful drop function, use "And" if adding multiple descriptions
+        // update timeArr
+        // update wasDropped to true for 1 second, will briefly disable other clicks
 $(".description-container").droppable({
     drop: function(event, p) {
-        var currentText = $(this).find("p").text().trim();
-        if (!currentText) {
+        var landingText = $(this).find("p").text().trim();
+        if (!landingText) {
             $(this).find("p").text(droppableText);
         } else {
             if (droppableText !== "") {
-            $(this).find("p").text(currentText + " And " + droppableText);
+            $(this).find("p").text(landingText + " And " + droppableText);
             }
         }
 
         wasDropped = true;
         
-        // only remove dragged Description, if Description was dropped somewhere
+        // remove dragged Description
         // also update timeArr on drop
-        if (wasDropped === true) {
-            setTimeout(function(){
-                wasDropped = false;
-                for (var i = 0; i < timeArr.length; i++) {
-                    var newDescription = $(timeArr[i].divId).find("p").text().trim();
+        setTimeout(function(){
+            wasDropped = false;
+            for (var i = 0; i < timeArr.length; i++) {
+                var newDescription = $(timeArr[i].divId).find("p").text().trim();
 
-                    timeArr[i].description = newDescription;
-                }
-            }, 1000)
-        }
+                timeArr[i].description = newDescription;
+            }
+        }, 900)
     }
 });
 
-// Click functions, only if not Dragged, create textarea
+// Click function, Create textarea in description
+// only if not Dragged aka wasDragged === false
 $(".description-container").on("click", "p", function() {
     if (wasDragged === false) {
         var text = $(this)
