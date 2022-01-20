@@ -92,8 +92,12 @@ if (!storedArr) {
         }
     }
 
-// Sets Current Day at the top of the page
-$("#currentDay").text(moment().format("MMM Do YYYY"));
+// Sets Current Day at the top of the page, on Open and every 30 seconds
+$("#currentDay").text("For " + moment().format("MMM Do YYYY"));
+
+setInterval (function(){
+    $("#currentDay").text("For " + moment().format("MMM Do YYYY"));
+}, 30000);
 
 // Set Past, Present, and Future classes, on Open and every 30 seconds
 setTimeBackground();
