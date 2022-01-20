@@ -2,7 +2,7 @@
 
 Made with Javascript, Jquery, Bootstrap, and Moment Js!
 
-<img width="1048" alt="work-scheduler-screenshot" src="">
+<img width="1048" alt="work-scheduler-screenshot" src="assets/images/workday-screenshot.png">
 
 ## How to Use
 
