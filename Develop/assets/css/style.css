@@ -154,4 +154,16 @@ p {
   border-bottom: 1px dashed black;
 }
 
+.highlight {
+  background-color: #77dd77;
+  transition: all .1s ease-in-out;
+}
 
+@media screen and (max-width: 768px) {
+
+  .saveBtn:hover {
+    font-size: 16px;
+    transition: all .1s ease-in-out;
+  }
+  
+}

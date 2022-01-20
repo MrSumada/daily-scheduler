@@ -73,8 +73,24 @@ var timeObj8p = {
 };
 
 // Array of row Objs
-var timeArr = [timeObj8a, timeObj9a, timeObj10a, timeObj11a, timeObj12p, timeObj1p, timeObj2p, timeObj3p, timeObj4p, timeObj5p, timeObj6p, timeObj7p, timeObj8p];
+var timeArr = [];
+var storedArr = JSON.parse(localStorage.getItem('dailyPlan'));
 
+    //get Arr from local storage or timeObjs
+if (!storedArr) {
+
+    timeArr = [timeObj8a, timeObj9a, timeObj10a, timeObj11a, timeObj12p, timeObj1p, timeObj2p, timeObj3p, timeObj4p, timeObj5p, timeObj6p, timeObj7p, timeObj8p];
+
+    } else {
+        timeArr = storedArr;
+
+        for (var i = 0; i < timeArr.length; i++) {
+            var saveDescription = timeArr[i].description;
+            $(timeArr[i].divId)
+                .find("p")
+                .text(saveDescription);
+        }
+    }
 
 // Sets Current Day at the top of the page
 $("#currentDay").text(moment().format("MMM Do YYYY"));
@@ -108,14 +124,13 @@ function setTimeBackground() {
 }
 
 //  Drag and Drop functions
-
 $(".description-container").draggable({
     zIndex: 1,
     revert: true,
     axis: "y",
     start: function() {
         droppableText = $(this).find("p").text().trim();
-        var dragged = true;
+        // var dragged = true;
         
     },
         //remove text if Drop was successful
@@ -146,25 +161,21 @@ $(".description-container").droppable({
             $(this).find("p").text(currentText + " And " + droppableText);
         }
 
-        for (var i = 0; i < timeArr.length; i++) {
-            var newDescription = $(timeArr[i].divId).find("p").text().trim();
-            console.log(newDescription);
-            $(timeArr[i].description).text(newDescription);
-        }
-        console.log(timeArr);
-
         wasDropped = true;
         
+         //only remove dragged Description, if Description was dropped somewhere
         if (wasDropped === true) {
             setTimeout(function(){
                 wasDropped = false;
-                console.log("wasDropped is " + wasDropped);
+                for (var i = 0; i < timeArr.length; i++) {
+                    var newDescription = $(timeArr[i].divId).find("p").text().trim();
+
+                    timeArr[i].description = newDescription;
+                }
             }, 1000)
         }
     }
 });
-
-
 
 // Click functions, only if not Dragged, create textarea
 $(".description-container").on("click", "p", function() {
@@ -179,10 +190,6 @@ $(".description-container").on("click", "p", function() {
         $(this).replaceWith(textInput);
 
         textInput.trigger("focus");
-
-        // $(".description").on("blur", "textarea", function() {
-        //     // $(".dec-text").text("");
-        // });
     }
 });
 
@@ -205,6 +212,17 @@ $(".description-container").on("blur", "textarea", function() {
 
 // click Save button to add to localStorage
 $(".saveBtn").on("click", function() {
-    // localStorage.setItem("timeArr", JSON.stringify(highScoreObj));
-    console.log(timeArr);
+
+    for (var i = 0; i < timeArr.length; i++) {
+        var newDescription = $(timeArr[i].divId).find("p").text().trim();
+
+        timeArr[i].description = newDescription;
+    }
+
+    $(this).addClass("highlight").text("Saved!");
+
+    setTimeout(function() {
+        $(".saveBtn").removeClass("highlight").html('<i class="far fa-calendar-plus"></i>');
+        }, 1000)
+    localStorage.setItem("dailyPlan", JSON.stringify(timeArr));
 })
