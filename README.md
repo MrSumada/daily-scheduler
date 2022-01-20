@@ -2,6 +2,8 @@
 
 Made with Javascript, Jquery, Bootstrap, and Moment Js!
 
+https://mrsumada.github.io/hourly-workday-scheduler/
+
 <img width="1048" alt="work-scheduler-screenshot" src="assets/images/workday-screenshot.png">
 
 ## How to Use
