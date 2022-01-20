@@ -162,12 +162,15 @@ $(".description-container").droppable({
         if (!currentText) {
             $(this).find("p").text(droppableText);
         } else {
+            if (droppableText !== "") {
             $(this).find("p").text(currentText + " And " + droppableText);
+            }
         }
 
         wasDropped = true;
         
-         //only remove dragged Description, if Description was dropped somewhere
+        // only remove dragged Description, if Description was dropped somewhere
+        // also update timeArr on drop
         if (wasDropped === true) {
             setTimeout(function(){
                 wasDropped = false;
