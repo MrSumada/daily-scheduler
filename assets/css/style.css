@@ -18,9 +18,7 @@ textarea{
   resize: none;
   color: #000000;
   border-left: 1px solid black;
-  /* margin: 20px 0; */
   padding: 10px;
-  /* new */
   width: 100%;
   height: 100%;
 }
@@ -28,7 +26,7 @@ textarea{
 p {
   margin: 0%;
   padding: 20px 0 0 0;
-}
+} 
 
 .jumbotron {
   text-align: center;
@@ -36,6 +34,11 @@ p {
   color: black;
   border-radius: 0;
   border-bottom: 10px solid black;
+  padding-bottom: 0;
+}
+
+.lead {
+  font-size: 25px;
 }
 
 .container {
@@ -44,19 +47,12 @@ p {
 }
 
 .row {
-  /* turned off */
-  /* white-space: pre-wrap; */
   height: 120px;
   border: 1px 0 solid black;
-  /* new */
-  /* width: 100%; */
-  /* height: 100%; */
 }
 
 .description-container {
   background-color: lightgray;
-  /* width: 100%;
-  height: 100%; */
   padding-left: 0;
   padding-right: 0;
   border-radius: 0 20px 20px 0;
@@ -67,14 +63,10 @@ p {
 }
 
 .description{
-  /* turned off */
-  /* white-space: pre-wrap; */
-  /* new */
   border: none;
   resize: none;
   color: #000000;
   border-left: 1px solid black;
-  /* new */
   border-top: 1px solid black;
   padding-left: 0;
   padding-right: 0;
@@ -91,7 +83,6 @@ p {
 .time-block{
   text-align: center;
   border-radius: 15px;
-  /* new */
   padding: 0%;
   margin: 0%;
 }
@@ -100,13 +91,10 @@ p {
   background-color: #ffffff;
   color: #000000;
   border-top: 1px dashed #000000;
-  /* new */
-  /* white-space: pre-wrap; */
   text-align: center;
   display: flex;
   justify-content: center;
   width: 100%;
-  /* background: linear-gradient(180deg, lemonchiffon, white); */
 }
 
 .hour-time {
@@ -135,10 +123,8 @@ p {
   border-bottom-right-radius: 15px;
   background-color: #06AED5;
   color: white;
-  /* new */
   width: 100%;
   height: 100%;
-  /* border-bottom: none; */
 }
 
 .saveBtn:hover {
@@ -158,10 +144,6 @@ p {
   background-color: #77dd77;
   transition: all .1s ease-in-out;
 }
-
-/* .highlight:hover {
-  font-size: 20px;
-} */
 
 
 @media screen and (max-width: 768px) {

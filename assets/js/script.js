@@ -239,3 +239,14 @@ $(".saveBtn").on("click", function() {
         }, 1000)
     localStorage.setItem("dailyPlan", JSON.stringify(timeArr));
 })
+
+
+// Bonus drag function
+
+$(".drag-span").draggable({
+    zIndex: 1,
+    revert: true,
+    revertDuration: 300,
+    opacity: 0.85,
+    containment: ".jumbotron"
+})
