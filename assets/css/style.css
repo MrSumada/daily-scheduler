@@ -142,7 +142,7 @@ p {
 }
 
 .saveBtn:hover {
-  font-size: 40px;
+  font-size: 22px;
   transition: all .1s ease-in-out;
 }
 
@@ -158,6 +158,11 @@ p {
   background-color: #77dd77;
   transition: all .1s ease-in-out;
 }
+
+/* .highlight:hover {
+  font-size: 20px;
+} */
+
 
 @media screen and (max-width: 768px) {
 
