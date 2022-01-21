@@ -41,6 +41,10 @@ p {
   font-size: 25px;
 }
 
+.drag-span {
+  cursor: default;
+}
+
 .container {
   display: block;
   padding: 50px;

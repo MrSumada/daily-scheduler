@@ -248,5 +248,5 @@ $(".drag-span").draggable({
     revert: true,
     revertDuration: 300,
     opacity: 0.85,
-    containment: ".jumbotron"
+    containment: ".jumbotron",
 })
