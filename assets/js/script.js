@@ -104,12 +104,15 @@ setTimeBackground();
 
 setInterval (function(){
     setTimeBackground();
+    currentTime = moment();
 }, 30000);
 
 
 //remove old Time Classes, and replace with current ones, loops through array to assign classes
 function setTimeBackground() {
     $(".description-container").removeClass("past present future");
+
+    // console.log("time checked!")
 
     for (var i = 0; i < timeArr.length; i++) {
         var timeMoment = moment(timeArr[i].time, "h:mma");
