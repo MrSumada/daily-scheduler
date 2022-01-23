@@ -1,4 +1,4 @@
-# Hourly Work Day Scheduler
+# Draggable Hourly Work Day Scheduler
 
 Made with Javascript, Jquery, Bootstrap, and Moment Js!
 
