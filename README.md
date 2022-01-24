@@ -2,7 +2,7 @@
 
 Made with Javascript, Jquery, Bootstrap, and Moment Js!
 
-https://mrsumada.github.io/hourly-workday-scheduler/
+https://mrsumada.github.io/draggable-hourly-workday-scheduler/
 
 <img width="1048" alt="work-scheduler-screenshot" src="assets/images/new-workday-screenshot.png">
 
