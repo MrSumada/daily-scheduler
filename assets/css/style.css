@@ -45,6 +45,10 @@ p {
   cursor: default;
 }
 
+.click-span {
+  cursor: pointer;
+}
+
 .container {
   display: block;
   padding: 50px;
