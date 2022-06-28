@@ -223,6 +223,13 @@ $(".description-container").on("blur", "textarea", function() {
 });
 
 
+$("#click-span").on("click", function() {
+    $(this).css('color', 'red').css('font-size', '2em');
+    setTimeout(function() {
+        $("#click-span").css('color', '#28a745').css('font-size', '25px');
+    }, 750);
+});
+
 // click Save button to add to localStorage
 $(".saveBtn").on("click", function() {
 

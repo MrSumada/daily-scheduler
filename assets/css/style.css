@@ -45,8 +45,10 @@ p {
   cursor: default;
 }
 
-.click-span {
+#click-span {
   cursor: pointer;
+  color: #28a745;
+  transition: all .2s ease-in-out;
 }
 
 .container {
